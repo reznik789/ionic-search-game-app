@@ -7,8 +7,13 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  public title: string;
 
+  constructor(public navCtrl: NavController) {
+  }
+
+  ionViewDidLoad(){
+   this.title = 'Home Page'
   }
 
 }

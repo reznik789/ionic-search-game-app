@@ -1,3 +1,22 @@
 page-home {
+    #home-page {
+        height: 100%;
+        background-color: rgb(41, 148, 236);
+        justify-content: center;
+    }
 
+    #main-grid {
+        height: 100%;
+        justify-content: center;
+    }
+
+    #home-icon {
+        font-size: 85px;
+        color: white
+    }
+
+    #welcome-text {
+        color: white;
+        font-size: 35px
+    }
 }

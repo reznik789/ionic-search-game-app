@@ -1,14 +1,21 @@
 <ion-header>
   <ion-navbar>
+    <button ion-button menuToggle icon-only>
+      <ion-icon name='menu'></ion-icon>
+    </button>
     <ion-title>
-      Ionic Blank
+      {{title}}
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content padding id='home-page'>
+  <ion-grid id="main-grid">
+    <ion-row justify-content-center align-items-center>
+      <ion-icon id='home-icon' ios="ios-build" md="md-build"></ion-icon>
+    </ion-row>
+    <ion-row justify-content-center align-items-center>
+      <p id="welcome-text">Welcome</p>
+    </ion-row>
+  </ion-grid>
 </ion-content>
