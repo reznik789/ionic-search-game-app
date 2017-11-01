@@ -5,7 +5,7 @@ import { SplashScreen } from "@ionic-native/splash-screen";
 
 import { IPage } from "./../interfaces/IPage";
 import { HomePage } from "../pages/home/home";
-import { GameGanresPage } from "../pages/game-ganres/game-ganres";
+import { GameGenresPage } from "../pages/game-genres/game-genres";
 
 const HOME_PAGE = 1;
 const GANRES_PAGE = 2;
@@ -38,7 +38,7 @@ export class MyApp {
             <IPage>{ title: "Home", component: HomePage, id: HOME_PAGE },
             <IPage>{
                 title: "Ganres",
-                component: GameGanresPage,
+                component: GameGenresPage,
                 id: GANRES_PAGE
             }
         ];
