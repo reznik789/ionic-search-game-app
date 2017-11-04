@@ -1,4 +1,5 @@
 import { IGenre } from "./../../interfaces/IGenre";
+import { IGame } from "./../../interfaces/IGame";
 import { Injectable } from "@angular/core";
 import { Http, RequestOptions, Headers } from "@angular/http";
 import { Observable } from "rxjs";
@@ -18,27 +19,26 @@ export class ApiProvider {
   private _baseUrl: string = "http://localhost:3080";
 
   public getGenres(): Observable<IGenre[]> {
-    const url = this._baseUrl + "/genres?fields=id,name,slug&limit=30";
+    const url = this._baseUrl + "/genres/?fields=id,name,slug&limit=30";
     return this._getData<IGenre[]>(url);
   }
 
-  private _getData<T>(url: string): Observable<T> {
-    return this.http
-      .get(url, this._getHeaders())
-      .map(res => res.json());   
+  public getGamesByGenreId( genreId: number ): Observable<IGame[]> {
+    const url = this._baseUrl + "/games/?fields=id,name,screenshots&limit=30&order=release_dates.date:desc&filter[genres][eq]="+genreId.toString();
+    return this._getData<IGame[]>(url);
   }
 
-  private _post<T>(url: string, data: object): Observable<T> {
-    return this.http
-      .post(url, data, this._getHeaders())
-      .map(res => res.json())
+  private _getData<T>(url: string): Observable<T> {
+    return this.http.get(url, this._getHeaders()).map(res => res.json());
   }
+
+  // private _post<T>(url: string, data: object): Observable<T> {
+  //   return this.http.post(url, data, this._getHeaders()).map(res => res.json());
+  // }
 
   private _getHeaders(): RequestOptions {
     return new RequestOptions({
-      headers: new Headers({
-          
-      })
+      headers: new Headers({})
     });
   }
 }

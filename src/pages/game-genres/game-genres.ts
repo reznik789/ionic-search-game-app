@@ -2,6 +2,7 @@ import { ApiProvider } from "./../../providers/api/api";
 import { IGenre } from "./../../interfaces/IGenre";
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { GenreSinglePage } from "../genre-single/genre-single";
 
 /**
  * Generated class for the GameGenresPage page.
@@ -25,19 +26,28 @@ export class GameGenresPage {
     public api: ApiProvider
   ) {}
 
+  private _upadateGenresList():void {
+    this.api.getGenres().subscribe(
+      genres => {
+        console.log(genres);
+        this.genres = genres;
+      },
+      error => {
+        console.log(error);
+        alert("Server error");
+      }
+    );
+  }
+
   ionViewDidLoad() {
     this.title = "Game Ganres";
-    if (this.genres.length === 0) {
-      this.api.getGenres().subscribe(
-        genres => {
-          console.log(genres);
-          this.genres = genres;
-        },
-        error => {
-          console.log(error);
-          alert("Server error");
-        }
-      );
-    }
+    this._upadateGenresList();
+  }
+  
+  public genreSelected(genre: IGenre):void {
+    console.log(genre);
+    this.navCtrl.push(GenreSinglePage, {
+      genreId: genre.id
+    });
   }
 }
