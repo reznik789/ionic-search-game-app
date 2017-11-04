@@ -1,0 +1,4 @@
+module.exports = {
+  apiUrl: "Igdb api url here",
+  key : "You api key here"
+};
