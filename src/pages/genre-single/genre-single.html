@@ -8,7 +8,7 @@
 
   <ion-navbar>
     <button ion-button menuToggle icon-only>
-      <ion-icon name='menu'></ion-icon>
+      <ion-icon id='menu-icon' name='menu'></ion-icon>
     </button>
     <ion-title>
       {{title}}
@@ -18,17 +18,31 @@
 </ion-header>
 
 
-<ion-content padding class="centered-content">
+<ion-content padding class="centered-content card-background-page">
   <ion-grid *ngIf="!games.length" class="centered-content">
     <ion-row justify-content-center align-items-center>
       <ion-spinner class="spinner-size" name="bubbles"></ion-spinner>
     </ion-row>
   </ion-grid>
   <ion-grid *ngIf="games.length > 0">
-    <ion-list inset>
-      <button ion-item *ngFor="let game of games">
-        {{ game.name }}
-      </button>
-    </ion-list>
+    <ion-card *ngFor="let game of games">
+
+      <div *ngIf="game.screenshots; then gamescreen else noscreen"></div>
+
+      <ng-template #gamescreen>
+        <div class="game-image">
+          <img src="https://images.igdb.com/igdb/image/upload/t_screenshot_med_2x/{{ game.screenshots[0].cloudinary_id }}.jpg" class="tinted"
+          />
+        </div>
+      </ng-template>
+
+      <ng-template #noscreen>
+        <div class="game-image">
+          <img src="assets/img/blank.png" />
+        </div>
+      </ng-template>
+
+      <div class="card-title" (click)="detailsPage(game)" >{{ game.name }}</div>
+    </ion-card>
   </ion-grid>
 </ion-content>

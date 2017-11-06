@@ -3,6 +3,7 @@ import { IGame } from "./../../interfaces/IGame";
 import { Injectable } from "@angular/core";
 import { Http, RequestOptions, Headers } from "@angular/http";
 import { Observable } from "rxjs";
+import { config } from "../../config";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
 
@@ -35,6 +36,14 @@ export class ApiProvider {
   // private _post<T>(url: string, data: object): Observable<T> {
   //   return this.http.post(url, data, this._getHeaders()).map(res => res.json());
   // }
+
+  private _getApiUrl = () => {
+    if(this.platform.is('core')) {
+      return this._baseUrl;
+    } else {
+      return config.apiUrl;
+    }
+  }
 
   private _getHeaders(): RequestOptions {
     return new RequestOptions({

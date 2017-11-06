@@ -23,3 +23,27 @@
     height: 35px;
     width: 35px;
 }
+
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,700,800');
+
+ion-content {
+    background: #ECECEC;
+    font-family: 'Raleway';
+}
+
+.toolbar-background {
+    background-color: #23ac17!important;
+}
+
+.toolbar-title.toolbar-title-md {
+    color: #ECECEC;
+    font-family: "Raleway";    
+    font-weight: 700;
+}
+
+#menu-icon {
+    color: #ECECEC;
+}
+.back-button.show-back-button {
+    color: #ECECEC;
+}

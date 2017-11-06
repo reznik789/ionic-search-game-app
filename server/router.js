@@ -1,18 +1,25 @@
-const requestProxy = require("express-request-proxy");
+const requestProxy = require("express-http-proxy");
 const config = require("./config");
 
-module.exports = function (app) {
-    app.get('/genres?*', requestProxy({
-        url : config.apiUrl + "/genres?*",
-        headers:{
-            'user-key': config.key
-        }
-    }));
-
-    app.get('/games?*', requestProxy({
-        url : config.apiUrl + "/games?*",
-        headers:{
-            'user-key': config.key
-        }
-    }));
-}
+module.exports = function(app) {
+  app.get(
+    "/games",
+    requestProxy(config.apiUrl+"/games", {
+      proxyReqOptDecorator: function(proxyReqOpts, srcReq) {
+        // you can update headers
+        proxyReqOpts.headers["user-key"] = config.key;
+        return proxyReqOpts;
+      }
+    })
+  );
+  app.get(
+    "/genres",
+    requestProxy(config.apiUrl+"/genres", {
+      proxyReqOptDecorator: function(proxyReqOpts, srcReq) {
+        // you can update headers
+        proxyReqOpts.headers["user-key"] = config.key;
+        return proxyReqOpts;
+      }
+    })
+  );
+};

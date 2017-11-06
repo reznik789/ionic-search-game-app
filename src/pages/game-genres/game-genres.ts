@@ -26,9 +26,9 @@ export class GameGenresPage {
     public api: ApiProvider
   ) {}
 
-  private _upadateGenresList():void {
+  private _upadateGenresList(): void {
     this.api.getGenres().subscribe(
-      genres => {
+      genres => {        
         console.log(genres);
         this.genres = genres;
       },
@@ -43,11 +43,11 @@ export class GameGenresPage {
     this.title = "Game Ganres";
     this._upadateGenresList();
   }
-  
-  public genreSelected(genre: IGenre):void {
+
+  public genreSelected(genre: IGenre): void {
     console.log(genre);
     this.navCtrl.push(GenreSinglePage, {
-      genreId: genre.id
+      genre
     });
   }
 }

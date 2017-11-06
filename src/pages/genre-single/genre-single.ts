@@ -1,3 +1,4 @@
+import { IGenre } from './../../interfaces/IGenre';
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { IGame } from "../../interfaces/IGame";
@@ -16,6 +17,7 @@ import { ApiProvider } from "./../../providers/api/api";
 })
 export class GenreSinglePage {
   public games: Array<IGame> = [];
+  public title: string = "";
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -36,12 +38,21 @@ export class GenreSinglePage {
   }
 
   ionViewDidLoad() {
-    let genreId = this.navParams.data.genreId;
-    console.log(genreId);
-    if (!genreId) {
+    let genre: IGenre = this.navParams.data.genre;
+    console.log(genre);
+    if (!genre.id) {
       alert("Error genre");
     } else {
-      this._updateGamesList(genreId);
+      this.title = genre.name;
+      this._updateGamesList(genre.id);
     }
   }
+
+  detailsPage(game: IGame) {
+    // this.navCtrl.push(DetailsPage, {
+    //   game: game
+    // })
+    console.log(game)
+  }
+
 }
