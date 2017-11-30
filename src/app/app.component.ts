@@ -11,42 +11,42 @@ const HOME_PAGE = 1;
 const GANRES_PAGE = 2;
 
 @Component({
-    templateUrl: "app.html"
+  templateUrl: "app.html"
 })
 export class MyApp {
-    public rootPage: any = HomePage;
-    public pages: Array<IPage> = [];
-    public active: number;
+  public rootPage: any = HomePage;
+  public pages: Array<IPage> = [];
+  public active: number;
 
-    constructor(
-        platform: Platform,
-        statusBar: StatusBar,
-        splashScreen: SplashScreen,
-        public menuCtrl: MenuController
-    ) {
-        platform.ready().then(() => {
-            // Okay, so the platform is ready and our plugins are available.
-            // Here you can do any higher level native things you might need.
-            statusBar.styleDefault();
-            splashScreen.hide();
-            this._setPages();
-        });
-    }
+  constructor(
+    platform: Platform,
+    statusBar: StatusBar,
+    splashScreen: SplashScreen,
+    public menuCtrl: MenuController
+  ) {
+    platform.ready().then(() => {
+      // Okay, so the platform is ready and our plugins are available.
+      // Here you can do any higher level native things you might need.
+      statusBar.styleDefault();
+      splashScreen.hide();
+      this._setPages();
+    });
+  }
 
-    private _setPages() {
-        this.pages = [
-            <IPage>{ title: "Home", component: HomePage, id: HOME_PAGE },
-            <IPage>{
-                title: "Ganres",
-                component: GameGenresPage,
-                id: GANRES_PAGE
-            }
-        ];
-    }
+  private _setPages() {
+    this.pages = [
+      <IPage>{ title: "Home", component: HomePage, id: HOME_PAGE },
+      <IPage>{
+        title: "Ganres",
+        component: GameGenresPage,
+        id: GANRES_PAGE
+      }
+    ];
+  }
 
-    public openPage = (page: IPage) => {
-        this.menuCtrl.close();
-        this.active = page.id;
-        this.rootPage = page.component;
-    };
+  public openPage = (page: IPage) => {
+    this.menuCtrl.close();
+    this.active = page.id;
+    this.rootPage = page.component;
+  };
 }

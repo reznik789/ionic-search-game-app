@@ -29,7 +29,6 @@ export class GameGenresPage {
   private _upadateGenresList(): void {
     this.api.getGenres().subscribe(
       genres => {        
-        console.log(genres);
         this.genres = genres;
       },
       error => {

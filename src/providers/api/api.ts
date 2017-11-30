@@ -25,8 +25,11 @@ export class ApiProvider {
     return this._getData<IGenre[]>(url);
   }
 
-  public getGamesByGenreId( genreId: number ): Observable<IGame[]> {
-    const url = this._getApiUrl() + "/games/?fields=id,name,screenshots&limit=30&order=release_dates.date:desc&filter[genres][eq]="+genreId.toString();
+  public getGamesByGenreId(genreId: number): Observable<IGame[]> {
+    const url =
+      this._getApiUrl() +
+      "/games/?fields=id,name,screenshots&limit=30&order=release_dates.date:desc&filter[genres][eq]=" +
+      genreId.toString();
     return this._getData<IGame[]>(url);
   }
 
@@ -38,18 +41,18 @@ export class ApiProvider {
   //   return this.http.post(url, data, this._getHeaders()).map(res => res.json());
   // }
 
-  private _getApiUrl = () : string => {
-    if(this.platform.is('core') || this.platform.is('mobileweb')) {
+  private _getApiUrl = (): string => {
+    if (this.platform.is("core") || this.platform.is("mobileweb")) {
       return this._baseUrl;
     } else {
       return config.apiUrl;
     }
-  }
+  };
 
   private _getHeaders(): RequestOptions {
     return new RequestOptions({
       headers: new Headers({
-        'user-key' : config.key
+        "user-key": config.key
       })
     });
   }
